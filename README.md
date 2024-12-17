@@ -7,6 +7,29 @@
 
 Setup up your application: https://docs.github.com/en/copilot/building-copilot-extensions/setting-up-copilot-extensions
 
+You'll need at least 2 skills, as in the screenshot below:
+
+![Skills](./docs/skills.png)
+
+Here is a an example of the /dust skill parameters. Don't forget to adapt the logic behind the /dust route:
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "assistant": {
+      "type": "string",
+      "description": "Name of the assistant to talk to."
+    }
+    "message": {
+      "type": "string",
+      "description": "The message to send to Dust",
+      "required": "true"
+    }
+  }
+}
+```
+
 Run the server:
 
 ```sh
