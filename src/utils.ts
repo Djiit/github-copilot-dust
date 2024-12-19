@@ -21,7 +21,6 @@ export const DUST_AGENT: AgentType = {
 
 export const USER_NAME = "GitHub Copilot";
 export const DUST_API_URL = "https://dust.tt/";
-export const DUST_NODE_ENV = "";
 
 export const DUST_CONTEXT: ConversationContext = {
   timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",

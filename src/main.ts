@@ -5,12 +5,7 @@ import { config } from "dotenv";
 import { pinoHttp, type Options } from "pino-http";
 import helmet from "helmet";
 
-import {
-  DUST_CONTEXT,
-  DUST_AGENT,
-  DUST_API_URL,
-  DUST_NODE_ENV,
-} from "./utils.js";
+import { DUST_CONTEXT, DUST_AGENT, DUST_API_URL } from "./utils.js";
 
 config({ path: ".env.local", override: true });
 
@@ -41,7 +36,6 @@ app.post("/dust", async (req, res) => {
   const dustApi = new DustAPI(
     {
       url: DUST_API_URL,
-      nodeEnv: DUST_NODE_ENV,
     },
     {
       workspaceId: process.env.DUST_WORKSPACE_ID || "",
