@@ -14,6 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@copilot-extensions/preview-sdk": "^5.0.1",
     "@dust-tt/client": "^1.0.16",
     "@types/body-parser": "^1.19.5",
     "body-parser": "^1.20.3",

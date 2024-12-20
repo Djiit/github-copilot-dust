@@ -3,6 +3,12 @@
 > [!WARNING]
 > This is a work in progress and not yet ready for use. Documentation and code may be incomplete or incorrect.
 
+This is a GitHub Copilot extension that allows you to send messages to the Dust assistant.
+You will need to have an active Dust subscription to use this extension.
+
+> [!NOTE]
+> This extension is a "skillset". Refer to the [GitHub Copilot documentation](https://docs.github.com/en/copilot/building-copilot-extensions/building-a-copilot-skillset-for-your-copilot-extension/about-copilot-skillsets) for more information.
+
 ## Usage
 
 Setup up your application: https://docs.github.com/en/copilot/building-copilot-extensions/setting-up-copilot-extensions
@@ -11,7 +17,7 @@ You'll need at least 2 skills, as in the screenshot below:
 
 ![Skills](./docs/skills.png)
 
-Here is a an example of the /dust skill parameters. Don't forget to adapt the logic behind the /dust route:
+Here is an example of the `dust` skill parameters, that should map to the `/skills/dust` endpoint.
 
 ```json
 {
@@ -42,7 +48,7 @@ Run the server:
 pnpm run dev
 ```
 
-Optionally expose the server to the internet using ngrok to test it live from GitHub Copilot:
+Optionally expose the server to the internet using e.g. `ngrok` to test it live from GitHub Copilot:
 
 ```sh
 ngrok http 3000
