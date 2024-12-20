@@ -10,6 +10,9 @@ importers:
       "@dust-tt/client":
         specifier: ^1.0.16
         version: 1.0.16
+      body-parser:
+        specifier: ^1.20.3
+        version: 1.20.3
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7

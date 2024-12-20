@@ -20,7 +20,7 @@ Here is a an example of the /dust skill parameters. Don't forget to adapt the lo
     "assistant": {
       "type": "string",
       "description": "Name of the assistant to talk to."
-    }
+    },
     "message": {
       "type": "string",
       "description": "The message to send to Dust",
@@ -30,10 +30,22 @@ Here is a an example of the /dust skill parameters. Don't forget to adapt the lo
 }
 ```
 
+Copy and adjust the `.env` file:
+
+```sh
+cp .env .env.local
+```
+
 Run the server:
 
 ```sh
 pnpm run dev
+```
+
+Optionally expose the server to the internet using ngrok to test it live from GitHub Copilot:
+
+```sh
+ngrok http 3000
 ```
 
 ## Deployment

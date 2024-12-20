@@ -1,16 +1,14 @@
-import "dotenv/config";
 import express from "express";
-import { config } from "dotenv";
 import helmet from "helmet";
-
-config({ path: ".env.local", override: true });
-
+import bodyParser from "body-parser";
+import { config } from "./config.js";
 import { askDust } from "./dust.js";
 import { logger } from "./logger.js";
 
 const app = express();
 app.use(logger);
 app.use(helmet());
+app.use(bodyParser.json());
 
 app.get("/health", (req, res) => {
   res.send("OK");
@@ -21,13 +19,11 @@ app.post("/ping", (req, res) => {
 });
 
 app.post("/dust", async (req, res) => {
-  const { assistant, message } = req.body;
+  const { message, assistant } = req.body;
   const answer = await askDust(message, assistant);
   res.send(answer);
 });
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  logger.logger.info(`Server listening on port ${port}`);
+app.listen(config.port, () => {
+  logger.logger.info(`Server listening on port ${config.port}`);
 });

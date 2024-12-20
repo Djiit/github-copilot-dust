@@ -1,8 +1,10 @@
 import { pinoHttp, type Options } from "pino-http";
 
-const pinoOptions: Options = { level: process.env.LOG_LEVEL || "info" };
+import { config } from "./config.js";
 
-if (process.env.NODE_ENV !== "production") {
+const pinoOptions: Options = { level: config.logLevel };
+
+if (config.env !== "production") {
   pinoOptions.transport = {
     target: "pino-pretty",
   };

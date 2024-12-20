@@ -1,4 +1,6 @@
 import { DustAPI, type AgentActionPublicType } from "@dust-tt/client";
+
+import { config } from "./config.js";
 import { logger } from "./logger.js";
 
 type ConversationContext = {
@@ -16,7 +18,7 @@ export interface AgentType {
   description: string;
 }
 
-export const DUST_AGENT: AgentType = {
+export const DUST_DEFAULT_AGENT: AgentType = {
   sId: "dust",
   name: "Dust",
   description: "An assistant with context on your company data.",
@@ -35,17 +37,32 @@ export const DUST_CONTEXT: ConversationContext = {
   origin: "github-copilot-chat",
 };
 
-export const askDust = async (question: string, assistant?: string) => {
-  const dustApi = new DustAPI(
-    {
-      url: DUST_API_URL,
-    },
-    {
-      workspaceId: process.env.DUST_WORKSPACE_ID || "",
-      apiKey: process.env.DUST_API_KEY || "",
-    },
-    logger.logger,
+const dustApi = new DustAPI(
+  {
+    url: DUST_API_URL,
+  },
+  config.dust,
+  logger.logger,
+);
+
+const getAgent = async (name: string): Promise<AgentType> => {
+  if (name === DUST_DEFAULT_AGENT.name) {
+    return DUST_DEFAULT_AGENT;
+  }
+
+  const r = await dustApi.getAgentConfigurations();
+  if (r.isErr()) {
+    throw new Error(r.error.message);
+  }
+
+  const agent = r.value.find(
+    (a: AgentType) => a.name.toLowerCase() === name.toLowerCase(),
   );
+  return agent ?? DUST_DEFAULT_AGENT;
+};
+
+export const askDust = async (question: string, assistant?: string) => {
+  const agent = await getAgent(assistant || DUST_DEFAULT_AGENT.name);
   const r = await dustApi.createConversation({
     title: null,
     visibility: "unlisted",
@@ -53,7 +70,7 @@ export const askDust = async (question: string, assistant?: string) => {
       content: question,
       mentions: [
         {
-          configurationId: DUST_AGENT.sId,
+          configurationId: agent.sId,
         },
       ],
       context: DUST_CONTEXT,
@@ -85,13 +102,13 @@ export const askDust = async (question: string, assistant?: string) => {
       }
       switch (event.type) {
         case "user_message_error": {
-          req.log.error(
+          logger.logger.error(
             `User message error: code: ${event.error.code} message: ${event.error.message}`,
           );
           return `**User message error** ${event.error.message}`;
         }
         case "agent_error": {
-          req.log.error(
+          logger.logger.error(
             `Agent message error: code: ${event.error.code} message: ${event.error.message}`,
           );
           return `**Dust API error** ${event.error.message}`;
