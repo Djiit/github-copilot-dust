@@ -1,6 +1,12 @@
+.devcontainer
 .env
+.env.*
 .git
 .gitignore
+.nvmrc
+.prettier*
+*.config.js
+*.config.ts
 *.md
 dist
 docs

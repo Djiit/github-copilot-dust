@@ -1,16 +1,15 @@
 FROM node:22-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+ENV HUSKY=0
 RUN corepack enable
 COPY . /app
 WORKDIR /app
 
 FROM base AS prod-deps
-ENV HUSKY=0
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 FROM base AS build
-ENV HUSKY=0
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 

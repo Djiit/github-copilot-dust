@@ -56,4 +56,16 @@ ngrok http 3000
 
 ## Deployment
 
-TBD
+### Using Docker
+
+A docker image is available on GitHub Container Registry at `ghcr.io/djiit/github-copilot-dust`.
+
+You can run it with the following command:
+
+```sh
+docker run \
+  -p 3000:3000 \
+  -e DUST_WORKSPACE_ID=<your-workspace-id> \
+  -e DUST_API_KEY=<your-api-key> \
+  ghcr.io/djiit/github-copilot-dust:main
+```
