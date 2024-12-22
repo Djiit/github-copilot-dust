@@ -18,7 +18,7 @@ RUN apk add --no-cache curl
 
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
-EXPOSE 3000
+EXPOSE 3000 9464
 
 HEALTHCHECK CMD curl http://localhost:3000/health || exit 1
 CMD [ "pnpm", "start" ]

@@ -65,7 +65,24 @@ You can run it with the following command:
 ```sh
 docker run \
   -p 3000:3000 \
-  -e DUST_WORKSPACE_ID=<your-workspace-id> \
-  -e DUST_API_KEY=<your-api-key> \
+  -e DUST_WORKSPACE_ID=your-workspace-id \
+  -e DUST_API_KEY=your-api-key \
   ghcr.io/djiit/github-copilot-dust:main
+```
+
+### Observability
+
+It uses OpenTelemetry for observability. You can disable it by setting `OTEL_SDK_DISABLED=true`.
+
+#### Metrics
+
+It exposes a `/metrics` endpoint for Prometheus monitoring on port `9464`.
+
+#### Traces
+
+You can configure it using any supported [environment variables](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#general-sdk-configuration). E.g. to export traces to a local Jaeger instance listening on default port, set:
+
+```sh
+export OTEL_TRACES_EXPORTER="otlp"
+export OTEL_EXPORTER_OTLP_PROTOCOL="http/json"
 ```

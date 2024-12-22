@@ -1,3 +1,5 @@
+import "./instrumentation.js";
+
 import express from "express";
 import helmet from "helmet";
 import bodyParser from "body-parser";
