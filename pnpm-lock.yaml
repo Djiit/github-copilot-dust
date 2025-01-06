@@ -12,8 +12,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       '@dust-tt/client':
-        specifier: ^1.0.16
-        version: 1.0.16
+        specifier: ^1.0.20
+        version: 1.0.20
       '@opentelemetry/auto-instrumentations-node':
         specifier: ^0.55.0
         version: 0.55.0(@opentelemetry/api@1.9.0)
@@ -164,8 +164,8 @@ packages:
   '@copilot-extensions/preview-sdk@5.0.1':
     resolution: {integrity: sha512-DvuJtTBl0aWvZnaNYVBiXuCdJN27ya6GYcJjv6J42Pnu1ubXHm8GHzUhIgLU/35c87HVHaITVah/jXogH3eChg==}
 
-  '@dust-tt/client@1.0.16':
-    resolution: {integrity: sha512-ch3l9W8YlBWYhy8t2lyakCSwiYNfxDMv/yVwd3bV0HIS+iUKCbetjLXZD7tKs6Xmt35m1Sdlpe+UlYpN/Z5Bng==}
+  '@dust-tt/client@1.0.20':
+    resolution: {integrity: sha512-EsuO07m5Nyg/q8HJ+dzZ8kybLx7TS2wvJjnQGl7R6ZKzzEKuxx/Wbg8ycwu0ESO9Io/1i6y/D1BYwG6rcfrE2w==}
     engines: {node: '>=20'}
 
   '@esbuild/aix-ppc64@0.21.5':
@@ -2747,7 +2747,7 @@ snapshots:
       '@octokit/request': 9.1.3
       '@octokit/request-error': 6.1.5
 
-  '@dust-tt/client@1.0.16':
+  '@dust-tt/client@1.0.20':
     dependencies:
       eventsource-parser: 1.1.2
       moment-timezone: 0.5.46
