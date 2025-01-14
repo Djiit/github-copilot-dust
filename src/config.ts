@@ -10,6 +10,7 @@ export const config = {
     workspaceId: process.env.DUST_WORKSPACE_ID || "",
     apiKey: process.env.DUST_API_KEY || "",
   },
-  port: process.env.PORT || 3000,
+  port: parseInt(process.env.PORT || "3000"),
+  metricsPort: parseInt(process.env.METRICS_PORT || "9464"),
   logLevel: process.env.LOG_LEVEL || "info",
 };

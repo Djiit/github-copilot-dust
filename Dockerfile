@@ -18,10 +18,16 @@ FROM base
 ENV NODE_ENV="production"
 
 RUN apk add --no-cache curl
+HEALTHCHECK CMD curl http://localhost:3000/health || exit 1
 
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
-EXPOSE 3000 9464
 
-HEALTHCHECK CMD curl http://localhost:3000/health || exit 1
+ARG PORT=3000
+ENV PORT=${PORT}
+ARG METRICS_PORT=9464
+ENV METRICS_PORT=${METRICS_PORT}
+
+EXPOSE ${PORT} ${METRICS_PORT}
+
 CMD [ "pnpm", "start" ]
