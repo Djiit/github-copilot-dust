@@ -2,9 +2,11 @@ FROM node:22-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV HUSKY=0
-COPY package.json pnpm-lock.yaml /app/
-RUN corepack enable
 WORKDIR /app
+
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable \
+    && corepack install
 
 FROM base AS full-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
