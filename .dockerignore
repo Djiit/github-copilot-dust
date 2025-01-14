@@ -9,6 +9,7 @@
 *.config.ts
 *.md
 dist
+Dockerfile
 docs
 node_modules
 test

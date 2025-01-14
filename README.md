@@ -67,6 +67,7 @@ docker run \
   -p 3000:3000 \
   -e DUST_WORKSPACE_ID=your-workspace-id \
   -e DUST_API_KEY=your-api-key \
+  - OTEL_SERVICE_NAME=github-copilot-dust \ # Optional
   ghcr.io/djiit/github-copilot-dust:main
 ```
 
