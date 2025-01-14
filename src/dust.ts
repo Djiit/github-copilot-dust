@@ -50,7 +50,7 @@ const getAgent = async (name: string): Promise<AgentType> => {
     return DUST_DEFAULT_AGENT;
   }
 
-  const r = await dustApi.getAgentConfigurations();
+  const r = await dustApi.getAgentConfigurations({});
   if (r.isErr()) {
     throw new Error(r.error.message);
   }
