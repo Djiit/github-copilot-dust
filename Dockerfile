@@ -6,12 +6,15 @@ COPY package.json pnpm-lock.yaml /app/
 RUN corepack enable
 WORKDIR /app
 
+FROM base AS full-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+
 FROM base AS prod-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
 FROM base AS build
+COPY --from=full-deps /app/node_modules /app/node_modules
 COPY . /app
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
 FROM base
