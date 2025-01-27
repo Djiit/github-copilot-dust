@@ -15,7 +15,7 @@
   "description": "",
   "dependencies": {
     "@copilot-extensions/preview-sdk": "^5.0.1",
-    "@dust-tt/client": "^1.0.23",
+    "@dust-tt/client": "^1.0.25",
     "@opentelemetry/auto-instrumentations-node": "^0.55.2",
     "@opentelemetry/exporter-prometheus": "^0.57.1",
     "@opentelemetry/sdk-node": "^0.57.1",
